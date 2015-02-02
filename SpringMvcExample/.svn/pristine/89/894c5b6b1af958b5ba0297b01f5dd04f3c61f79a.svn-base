@@ -1,0 +1,83 @@
+div.upperThird
+{
+	height: 140px;
+	width:100%;
+	min-width: 650px;
+}
+.upperThirdLeft
+{
+	float:left;
+}
+.upperThirdRight
+{
+	float:right;
+}
+div.CoffeeDivs
+{
+  bottom:70%;
+  width:100%;
+  min-width:400px;
+}
+div.txtCoffeeButtonDiv
+{
+	float:left;
+	width:20%;
+	background-color:blue;
+}
+div.insertCoffeeButtonDiv
+{
+	float:left;
+	background-color:green;
+	width:20%
+}
+div.deleteCoffeeButtonDiv
+{
+	float:left;
+	background-color:red;
+	width:20%
+}
+div.addCoffeeButtonDiv
+{
+	float:left;
+	background-color:green;
+	width:20%
+}
+div.subtractCoffeeButtonDiv
+{
+	float:left;
+	background-color:red;
+	width:20%
+}
+div.txtCoffeeInfo
+{
+	background-color: white;
+    width: 33%;
+    height: 69%;
+    overflow-y: auto;
+    float:left;
+}
+div.txtCoffeeXML
+{
+	background-color: orange;
+    width: 33%;
+    height: 69%;
+    overflow-y: auto;
+    float:left;
+}
+div.inputCoffeeXML
+{
+	background-color: white;
+    width: 33%;
+    height: 69%;
+    float:left;
+}
+.inputXMLText
+{
+	width:100%;
+	height:95%;
+}
+
+
+
+
+

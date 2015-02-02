@@ -1,0 +1,207 @@
+//This function posts the xml data from the textbox to the url which stores it in the db
+function PostXmlCoffeeInfo()
+{
+	if(document.getElementById('inputXMLText').value !='')
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var textAreaXML = document.getElementById('inputXMLText').value;
+		xmlhttp.open("POST",'http://localhost:8080/SpringMvcExample/cofPost',false);
+		xmlhttp.setRequestHeader("Content-Type", "application/xml");
+		xmlhttp.send(textAreaXML);
+		loadXMLDoc('cofsix');
+	}
+	else
+	{
+		alert("Please Make Sure That The Text Area Has XML!");
+	}
+}
+//Gets the data and passes the name and quanlity in url query string to subtract
+function SubtractCoffeeInfo()
+{
+	if(document.getElementById('NameText').value !='' && document.getElementById('QuanlityText').value !='')
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var Name = document.getElementById('NameText').value;
+		var Quanlity = document.getElementById('QuanlityText').value;
+		xmlhttp.open("GET",'cofsubtract?Name='+Name+'&Quanlity='+Quanlity,false);
+		xmlhttp.send();
+		loadXMLDoc('cofsix');
+	}
+	else
+	{
+		alert("Please Make Sure That The Text Boxes Have Values");
+	}
+}
+//Gets the data and passes the name and quanlity in url query string to add
+function AddCoffeeInfo()
+{
+	if(document.getElementById('NameText').value !='' && document.getElementById('QuanlityText').value !='')
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var Name = document.getElementById('NameText').value;
+		var Quanlity = document.getElementById('QuanlityText').value;
+		xmlhttp.open("GET",'cofadd?Name='+Name+'&Quanlity='+Quanlity,false);
+		xmlhttp.send();
+		loadXMLDoc('cofsix');
+	}
+	else
+	{
+		alert("Please Make Sure That The Text Boxes Have Values");
+	}
+}
+//Gets the data and passes the name and quanlity in url query string to insert
+function InsertCoffeeInfo()
+{
+	if(document.getElementById('NameText').value !='' && document.getElementById('QuanlityText').value !='')
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var Name = document.getElementById('NameText').value;
+		var Quanlity = document.getElementById('QuanlityText').value;
+		xmlhttp.open("GET",'cofeight?Name='+Name+'&Quanlity='+Quanlity,false);
+		xmlhttp.send();
+		loadXMLDoc('cofsix');
+	}
+	else
+	{
+		alert("Please Make Sure That The Text Boxes Have Values");
+	}
+}
+
+function DeleteCoffeeInfo()
+{
+	if(document.getElementById('NameText').value !='' && document.getElementById('QuanlityText').value !='')
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var Name = document.getElementById('NameText').value;
+		var Quanlity = document.getElementById('QuanlityText').value;
+		xmlhttp.open("GET",'cofnine?Name='+Name+'&Quanlity='+Quanlity,false);
+		xmlhttp.send();
+		loadXMLDoc('cofsix');
+	}
+	else
+	{
+		alert("Please Make Sure That The Text Boxes Have Values");
+	}
+}
+
+function loadXMLDoc(url)
+{
+var xmlhttp;
+var txt,x,xx,i,txtxml;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    txt="<table id='coffeeTable' class = 'coffeeTable' border='2' width='100%'><tr><th>Name</th><th>Quanlity</th></tr>";
+    x=xmlhttp.responseXML.documentElement.getElementsByTagName("coffee");
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + "<tr>";
+      xx=x[i].getElementsByTagName("name");
+        {
+        try
+          {
+          txt=txt + "<td>" + xx[0].firstChild.nodeValue + "</td>";
+          }
+        catch (er)
+          {
+          txt=txt + "<td> </td>";
+          }
+        }
+      xx=x[i].getElementsByTagName("quanlity");
+        {
+        try
+          {
+          txt=txt + "<td>" + xx[0].firstChild.nodeValue + "</td>";
+          }
+        catch (er)
+          {
+          txt=txt + "<td> </td>";
+          }
+        }
+      txt=txt + "</tr>";
+      }
+    txt=txt + "</table>";
+    document.getElementById('txtCoffeeInfo').innerHTML=txt;
+    txtxml=xmlhttp.responseText;
+    txtxml = vkbeautify.xml(txtxml, 3);
+    txtxml=txtxml.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    txtxml="<PRE>" + txtxml + "</PRE>";
+    document.getElementById('txtCoffeeXML').innerHTML=txtxml;
+    }
+  }
+if (document.getElementById('coffourRadio').checked)
+{
+	xmlhttp.open("GET",'coffour',false);
+}
+else if (document.getElementById('cofsixRadio').checked)
+{
+	xmlhttp.open("GET",'cofsix',false);
+}
+else if (document.getElementById('cofsevenRadio').checked)
+{
+	if(document.getElementById('NameText').value !='' && document.getElementById('QuanlityText').value !='')
+	{
+		var Name = document.getElementById('NameText').value;
+		var Quanlity = document.getElementById('QuanlityText').value;
+		xmlhttp.open("GET",'cofseven?Name='+Name+'&Quanlity='+Quanlity,false);
+	}
+	else
+	{
+		xmlhttp.open("GET",'cofseven',false);
+	}
+}
+else
+{
+	xmlhttp.open("GET",url,false);
+}
+xmlhttp.send();
+}
