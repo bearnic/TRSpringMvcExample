@@ -48,4 +48,18 @@ public class GraphicsController {
 		ModelAndView mv = new ModelAndView("3DRoom");
 		return mv;
 	}
+	
+	@RequestMapping(value = "ObjectPicking", method = RequestMethod.GET)
+	public ModelAndView getObjectPicking() 
+	{
+		ModelAndView mv = new ModelAndView("ObjectPicking");
+		return mv;
+	}
+	
+	@RequestMapping(value = "LightSwitch", method = RequestMethod.GET)
+	public ModelAndView getLightSwitch() 
+	{
+		ModelAndView mv = new ModelAndView("LightSwitch");
+		return mv;
+	}
 }

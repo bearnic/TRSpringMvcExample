@@ -57,6 +57,8 @@
       cube.rotation.x = Math.PI * 0.1;
       scene.add(cube);
       
+      //scene.remove(cube);
+      
       // add subtle ambient lighting
       var ambientLight = new THREE.AmbientLight(0xbbbbbb);
       scene.add(ambientLight);
